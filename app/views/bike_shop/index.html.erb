@@ -1,13 +1,14 @@
 <h1>Bike Shop</h1>
 
-<% @accessories.each do |item| %>
-  <div class="bike_shop_item">
+<% @accessories.each_with_index do |item, index| %>
+  <div class="bike_shop_item_<%=index + 1%>">
     <ul>
       <img src= "<%= item.image %>" />
       <li><%= item.title %></li>
       <li><%= item.price %></li>
       <li><%= item.description %></li>
-      <li><%= link_to "Add to Cart" %></li>
+      <li><%= link_to "Add to Cart"%></li>
+      <% #carts_path(item_id: item.id), class: %>
     </ul>
   </div>
 <% end %>
