@@ -11,7 +11,7 @@ describe User, type: :model do
   end
 
   describe 'roles' do
-    xit 'can be created as a default user' do
+    it 'can be created as a default user' do
       user = User.create(name: "underling", email: 'underling@email.com')
 
       expect(user.role).to eq('default')
