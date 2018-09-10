@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="">
-  <h1 class="navbar-brand">Bike Share</h1>
+  <h1 class="navbar-brand"><%= link_to "Bike Share", root_path, class: "nav-link" %></h1>
   <% if current_user.present? %>
     <p class="navbar-brand">
       <%= "Logged in as #{current_user.name} " %>
@@ -13,7 +13,6 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to "Home", root_path, class: "nav-link" %>
       <% unless current_user %>
         <li class="nav-item">
           <%= link_to "Log In", login_path, class: "nav-link" %>
@@ -23,13 +22,16 @@
         <%= link_to "Cart", cart_path, class: "nav-link" %> : <%= @cart.total_count %>
       </li>
       <li class="nav-item">
-        <%= link_to "Stations", stations_path,class: "nav-link" %>
+        <%= link_to "Stations", stations_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Trips", class: "nav-link" %>
+        <%= link_to "Trips", trips_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Conditions", class: "nav-link" %>
+        <%= link_to "Conditions", conditions_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Bike Shop", bike_shop_path, class: "nav-link" %>
       </li>
       <% if current_user %>
         <li class="nav-item">
