@@ -27,17 +27,20 @@ feature 'Admin creates station' do
         expect(page).to have_button("Submit")
       end
       context 'when I update the form and click submit' do
-        xscenario 'it creates a station' do
+        scenario 'it creates a station' do
           click_on "Create Station"
-
           fill_in :station_name, with: "Madrid Spain Station"
           fill_in :station_dock_count, with: 42
           fill_in :station_city, with: "Madrid"
-          page.find('#installation_date').set('10-10-2010')
+          fill_in "Installation date", with: '10/10/2010'
+          # page.find('#installation_date').set('10/10/2010')
+          # select '01/02/2011', :from => "Installation date"
+          # select_date("Installation date", :with => "1/1/2011")
 
           click_on "Submit"
 
           station = Station.last
+          station.reload
 
           expect(current_path).to eq(admin_station_path(station))
           expect(page).to have_content("Successfully created #{station.name}!")
