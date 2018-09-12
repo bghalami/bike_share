@@ -14,7 +14,9 @@ before_action :set_station, only: [:destroy, :edit, :show, :update]
   end
 
   def create
-    station = Station.create(station_params)
+    station = Station.new(station_params)
+    station.save
+    flash[:notice] = "Successfully created #{station.name}!"
     redirect_to admin_station_path(station)
   end
 
@@ -23,6 +25,7 @@ before_action :set_station, only: [:destroy, :edit, :show, :update]
   end
 
   def update
+    # binding.pry
     @station.update(station_params)
     flash[:notice] = "Successfully updated!"
     redirect_to admin_station_path(@station)
@@ -35,11 +38,12 @@ before_action :set_station, only: [:destroy, :edit, :show, :update]
 
   private
   def station_params
+    params[:station][:installation_date] = Date.strptime(params[:station][:installation_date], '%Y/%m/%d')
     params.require(:station).permit(:name, :dock_count, :city, :installation_date)
   end
 
   def set_station
     @station = Station.find_by(slug: params[:slug])
   end
-  
+
 end

@@ -4,7 +4,8 @@ feature 'Admin edits station' do
   let!(:station) { Station.create(name:              "San Jose Diridon Caltrain Station",
                                   dock_count:        27,
                                   city:              "San Jose",
-                                  installation_date: "8/6/2013",
+                                  # installation_date: '10/10/2010',
+                                  installation_date: Date.strptime("8/6/2013", "%m/%d/%Y")
                                   )}
   context 'as an admin' do
 
@@ -29,8 +30,9 @@ feature 'Admin edits station' do
         scenario 'it updates a station' do
           click_on "Edit"
           fill_in :station_dock_count, with: 42
+          # save_and_open_page
+          binding.pry
           click_on "Submit Changes"
-          station.reload
 
           expect(current_path).to eq(admin_station_path(station))
           expect(station.dock_count).to eq(42)
