@@ -34,7 +34,11 @@ class Cart
         @contents[id] = 0
       end
     end
-    @contents[id] = @contents[id] - 1
+    if @contents[id] > 1
+     @contents[id] = @contents[id] - 1
+   else
+     @contents.delete(id)
+   end
   end
 
   def accessories

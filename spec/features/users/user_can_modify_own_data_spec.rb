@@ -38,7 +38,10 @@ describe 'As a registered user' do
 
     end
     it 'does not allow user to modify other user account data' do
+      visit edit_user_path(@user1)
 
+      expect(page).to_not have_content("Beemo")
+      expect(page).to have_content("The page you were looking for doesn't exist.")
     end
   end
 end

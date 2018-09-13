@@ -2,6 +2,12 @@ require 'rails_helper'
 
 describe'a registered user can visits trips dashboard' do
   it 'displays the average duration of the ride' do
+    @user1 = User.create(name: "Beemo", email: "bmo@email.com", password: "pass", password_confirmation: "pass")
+    @user2 = User.create(name: "Zebra", email: "zebra@email.com", password: "test", password_confirmation: "test")
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
+
+
     station_1 = Station.create(name:"1 station",dock_count: 3, city: "Denver", installation_date: Date.strptime("03/23/2016", '%m/%d/%Y'))
     station_2 = Station.create(name:"2 station",dock_count: 3, city: "Denver", installation_date: Date.strptime("03/23/2016", '%m/%d/%Y'))
 

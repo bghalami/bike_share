@@ -2,12 +2,11 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    if current_user.orders.include?(@order)
+    if current_admin? || (current_user && @order.user == current_user)
       @accessories = @order.accessory_count
       @total_price = @order.total_price
     else
-      redirect_to dashboard_path
-      flash[:notice] = "You are not authorized to view this page."
+      render file: '/public/404'
     end
   end
 

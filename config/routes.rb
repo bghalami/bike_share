@@ -40,6 +40,6 @@ Rails.application.routes.draw do
 
   resources :stations, only: [:index, :new, :update, :destroy, :create], param: :slug
 
-  get '/:slug', to: 'stations#show', as: "station_show"
-  get '/:slug', to: 'stations#create', as: "edit_station"
+  get '/:slug', to: 'stations#show', as: "show_station"
+  get '/:slug/edit', to: 'stations#create', as: "edit_station"
 end
