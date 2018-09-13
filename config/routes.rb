@@ -38,9 +38,8 @@ Rails.application.routes.draw do
 
 
 
-  resources :stations, only: [:index, :update, :destroy, :create], param: :slug
+  resources :stations, only: [:index, :new, :update, :destroy, :create], param: :slug
 
-  get '/:slug', to: 'stations#show', as: "station"
-  post '/:slug', to: 'stations#create', as: "edit_station"
-  put '/:slug', to:'stations#update', as: "new_station"
+  get '/:slug', to: 'stations#show', as: "station_show"
+  get '/:slug', to: 'stations#create', as: "edit_station"
 end
