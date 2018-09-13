@@ -1,0 +1,51 @@
+<div class="user-form-container container">
+  <h1><%= "Edit trip: ##{@trip.id}" %></h1>
+  <div class="user-form">
+    <%= form_for [@admin, @trip] do |f| %>
+      <div class="form-section">
+          <%= f.label :duration, style: "margin-bottom:2%" %>:
+          <%= f.text_field :duration %>
+      </div>
+    </br>
+      <div class="form-section">
+          <%= f.label :start_station, style: "margin-bottom:2%" %>:
+          <%= f.collection_select :start_station_id, Station.all, :id, :name %>
+      </div>
+    </br>
+      <div class="form-section">
+          <%= f.label :start_date, style: "margin-bottom:2%" %>:
+          <%= f.date_field :start_date %>
+      </div>
+    </br>
+      <div class="form-section">
+          <%= f.label :end_station, style: "margin-bottom:2%" %>:
+          <%= f.collection_select :end_station_id, Station.all, :id, :name %>
+      </div>
+    </br>
+      <div class="form-section">
+          <%= f.label :end_date, style: "margin-bottom:2%" %>:
+          <%= f.date_field :end_date %>
+      </div>
+    </br>
+    </br>
+      <div class="form-section">
+          <%= f.label :bike_id, style: "margin-bottom:2%" %>:
+          <%= f.text_field :bike_id %>
+      </div>
+    </br>
+      <div class="form-section">
+          <%= f.label :subscription_type, style: "margin-bottom:2%" %>:
+          <%= f.text_field :subscription_type %>
+      </div>
+    </br>
+      <div class="form-section">
+          <%= f.label :zip_code, style: "margin-bottom:2%" %>:
+          <%= f.text_field :zip_code %>
+      </div>
+    </br>
+      <div class="form-section">
+        <%= f.submit 'Submit Changes', class: "btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>

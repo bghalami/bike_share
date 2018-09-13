@@ -14,12 +14,12 @@ feature 'Admin can delete a trip spec' do
 
     context 'on the trip index page' do
       before do
-        visit admin_trips_path
+        visit trips_path
       end
         scenario 'admin can delete a trip' do
           click_on "Delete"
 
-          expect(current_path).to eq(admin_trips_path)
+          expect(current_path).to eq(trips_path)
           expect(page).to have_content("Successfully deleted.")
           expect(page).to_not have_content("#{trip.id}")
         end
@@ -27,12 +27,12 @@ feature 'Admin can delete a trip spec' do
 
     context 'on the trip show page' do
       before do
-        visit admin_trip_path(trip)
+        visit trip_path(trip)
       end
 
         scenario 'admin can delete a trip' do
           click_on "Delete"
-          expect(current_path).to eq(admin_trips_path)
+          expect(current_path).to eq(trips_path)
           expect(page).to have_content("Successfully deleted.")
           expect(page).to_not have_content("#{trip.id}")
         end

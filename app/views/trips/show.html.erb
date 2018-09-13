@@ -1,4 +1,8 @@
-<h1>Trip</h1>
+<% if current_user && current_user.admin? %>
+  <h1>Admin Trip</h1>
+<% else %>
+  <h1>Trip</h1>
+<% end %>
 
 <ul>
   <li>Duration: <%= @trip.duration %> seconds</li>
@@ -9,4 +13,8 @@
   <li>Bike Id: <%= @trip.bike_id %></li>
   <li>Subscription Type: <%= @trip.subscription_type %></li>
   <li>Zip code: <%= @trip.zip_code %></li>
+    <% if current_user && current_user.admin? %>
+      <li><%= link_to "Edit", edit_admin_trip_path(@trip) %></li>
+      <li><%= link_to "Delete", admin_trip_path(@trip), method: :delete %></li>
+    <% end %>
 </ul>

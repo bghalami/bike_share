@@ -25,7 +25,6 @@ describe 'As a registered user' do
       click_on("Checkout")
 
       expect(current_path).to eq(dashboard_path)
-
     end
     it 'shows flash message notifying Successfully submitted your order totaling $TOTAL' do
       click_on("Checkout")
@@ -33,6 +32,7 @@ describe 'As a registered user' do
       expect(current_path).to eq(dashboard_path)
 
       expect(page).to have_content("Successfully submitted your order totaling $30.07")
+      expect(page).to have_content("You ordered 2 items.")
     end
   end
 end

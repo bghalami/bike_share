@@ -20,7 +20,7 @@ feature 'Registered user can log out' do
         expect(page).to have_content("Log In")
         expect(page).to have_content("Successfully logged out.")
         expect(page).to_not have_content("Log Out")
-        expect(current_path).to eq(welcome_home_path)
+        expect(current_path).to eq(root_path)
       end
     end
   end

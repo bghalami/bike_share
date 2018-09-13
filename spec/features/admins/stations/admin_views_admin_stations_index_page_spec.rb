@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin views admin stations index page' do
+feature 'Admin views stations index page' do
   context 'Admin views edit and delete buttons for each station' do
     context 'as an admin on the stations index page' do
 
@@ -25,12 +25,12 @@ feature 'Admin views admin stations index page' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
 
-        visit admin_stations_path
+        visit stations_path
       end
 
       scenario 'I am on the admin stations index page' do
-        expect(current_path).to eq(admin_stations_path)
-        expect(page).to have_content("All Admin Stations")
+        expect(current_path).to eq(stations_path)
+        expect(page).to have_content("Admin Stations")
       end
 
       scenario 'I view an edit button for each station' do
@@ -60,23 +60,25 @@ feature 'Admin views admin stations index page' do
   end
 
   context 'as default user' do
-    scenario 'I can not see admin stations index' do
+    scenario 'I can not see admin stations index functions' do
       user = User.create!(name: "Ameila Pond", email: "amelia@pond.com", password: "Rory", password_confirmation: "Rory", role: 0)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit admin_stations_path
+      visit stations_path
 
-      expect(page).to_not have_content("All Admin Stations")
-      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page).to_not have_content("Admin Stations")
+      expect(page).to_not have_link("Edit")
+      expect(page).to_not have_link("Delete")
     end
   end
   context 'as visitor' do
-    scenario 'I can not see admin stations index' do
+    scenario 'I can not see admin stations index functions' do
 
-      visit admin_stations_path
+      visit stations_path
 
-      expect(page).to_not have_content("All Admin Stations")
-      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page).to_not have_content("Admin Stations")
+      expect(page).to_not have_link("Edit")
+      expect(page).to_not have_link("Delete")
     end
   end
 end

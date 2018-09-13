@@ -18,39 +18,8 @@
           <%= link_to "Log In", login_path, class: "nav-link" %>
         </li>
       <% end %>
-        <% if current_user && current_user.admin? %>
-          <li class="nav-item">
-            <%= link_to "Stations", admin_stations_path, class: "nav-link" %>
-          </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Stations", stations_path, class: "nav-link" %>
-            </li>
-        <% end %>
-        <% if current_user %>
-        <li class="nav-item">
-          <%= link_to "Stations Dashboard", stations_dashboard_path, class: "nav-link" %>
-        </li>
-        <% end %>
-        <% if current_user && current_user.admin? %>
-          <li class="nav-item">
-            <%= link_to "Trips", admin_trips_path, class: "nav-link" %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Trips", trips_path, class: "nav-link" %>
-          </li>
-        <% end %>
-        <% if current_user %>
-          <li class="nav-item">
-            <%= link_to "Trip Dashboard", trips_dashboard_path, class: "nav-link" %>
-          </li>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to "Conditions", conditions_path, class: "nav-link" %>
-        </li>
       <li class="nav-item">
-        <%= link_to "Cart", cart_path, class: "nav-link" %>: <%= @cart.total_count %>
+        <%= link_to "Cart:", cart_path, class: "nav-link" %> <%= @cart.total_count %>
       </li>
       <li class="nav-item">
         <%= link_to "Stations", stations_path, class: "nav-link" %>

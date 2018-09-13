@@ -11,7 +11,7 @@ feature 'Admin edits station' do
     before do
       admin = User.create!(name: "Dr.Who", email: "thedoctor@tardis.com", password: "blue", password_confirmation: "blue", role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-      visit admin_stations_path
+      visit stations_path
     end
 
     context 'when I click on Edit' do
@@ -32,7 +32,7 @@ feature 'Admin edits station' do
           click_on "Submit Changes"
           station.reload
 
-          expect(current_path).to eq(admin_station_path(station))
+          expect(current_path).to eq(station_path(station))
           expect(station.dock_count).to eq(42)
           expect(page).to have_content("Successfully updated!")
         end
@@ -44,7 +44,7 @@ feature 'Admin edits station' do
     before do
       admin = User.create!(name: "Dr.Who", email: "thedoctor@tardis.com", password: "blue", password_confirmation: "blue", role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-      visit admin_station_path(station)
+      visit station_path(station)
     end
 
     context 'when I click on Edit' do
@@ -65,7 +65,7 @@ feature 'Admin edits station' do
           click_on "Submit Changes"
           station.reload
 
-          expect(current_path).to eq(admin_station_path(station))
+          expect(current_path).to eq(station_path(station))
           expect(station.dock_count).to eq(42)
           expect(page).to have_content("Successfully updated!")
         end

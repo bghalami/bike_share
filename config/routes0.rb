@@ -33,11 +33,13 @@ Rails.application.routes.draw do
   patch '/cart', to:'carts#decrease'
 
   namespace :admin do
-    resources :stations, only: [:update, :destroy, :new, :create, :edit], param: :slug
+    resources :stations, only: [:update, :destroy, :new, :create, :edit]
     resources :trips, only: [:update, :destroy, :new, :create, :edit]
     resources :conditions, only: [:update, :destroy, :new, :create, :edit]
   end
-  resources :stations, only: [:index]
+  resources :stations, only: [:index, :show]
 
-  get '/:slug', to: 'stations#show', as: "station"
+  get '/:slug', to: 'stations#show', as: "show_station"
+  # get '/:slug/edit', to: 'stations#edit', as: "edit_station"
+
 end

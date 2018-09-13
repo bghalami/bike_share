@@ -1,5 +1,17 @@
-<h1>All Stations</h1>
-<br>
+<% if current_admin? %>
+  <h1>Admin Stations</h1>
+<% else %>
+  <h1>All Stations</h1>
+<% end %>
+</br>
+
+<% if current_admin? %>
+<div class ="btn">
+  <%= link_to "Create Station", new_admin_station_path %>
+</div>
+<% end %>
+</br>
+
 <% if current_user %>
   <%= link_to "Stations Dashboard", stations_dashboard_path, class: "nav-link" %>
 <% end %>
@@ -7,15 +19,14 @@
 <div class='card-holder'>
   <% @stations.each do |station| %>
     <ul class="station-card">
-      <% if current_user && current_user.admin? %>
-        <li>Station: <%= link_to station.name , admin_station_path(station) %></li>
-      <% else %>
-        <li>Station: <%= link_to station.name , station_path(station) %></li>
-      <% end %>
+      <li>Station: <%= link_to station.name , station_path(station) %></li>
       <li>Dock Count: <%= station.dock_count %></li>
       <li>City: <%= station.city %></li>
       <li>Install Date: <%= station.installation_date %></li>
+      <% if current_admin? %>
+        <li><%= link_to "Edit", edit_admin_station_path(station) %></li>
+        <li><%= link_to "Delete", admin_station_path(station), method: :delete %></li>
+      <% end %>
     </ul>
-    <br>
   <% end %>
 </div>

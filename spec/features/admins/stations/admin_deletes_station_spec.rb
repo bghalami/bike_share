@@ -14,12 +14,12 @@ feature 'Admin deletes station' do
 
       context 'on the station index page' do
         before do
-          visit admin_stations_path
+          visit stations_path
         end
           scenario 'admin can delete a station' do
             click_on "Delete"
 
-            expect(current_path).to eq(admin_stations_path)
+            expect(current_path).to eq(stations_path)
             expect(page).to have_content("Successfully deleted.")
             expect(page).to_not have_content(station.name)
           end
@@ -27,12 +27,12 @@ feature 'Admin deletes station' do
 
       context 'on the station show page' do
         before do
-          visit admin_station_path(station)
+          visit station_path(station)
         end
 
           scenario 'admin can delete a station' do
             click_on "Delete"
-            expect(current_path).to eq(admin_stations_path)
+            expect(current_path).to eq(stations_path)
             expect(page).to have_content("Successfully deleted.")
             expect(page).to_not have_content(station.name)
           end

@@ -1,7 +1,15 @@
-<h1>Station: <%= @station.name %></h1>
+<% if current_user && current_user.admin? %>
+  <h1>Admin Station: <%= @station.name %></h1>
+<% else %>
+  <h1>Station: <%= @station.name %></h1>
+<% end %>
 
 <ul>
   <li>Dock Count: <%= @station.dock_count %></li>
   <li>City: <%= @station.city %></li>
   <li>Installation Date: <%= @station.installation_date %></li>
+  <% if current_user && current_user.admin? %>
+    <li><%= link_to "Edit", edit_admin_station_path(@station) %></li>
+    <li><%= link_to "Delete", admin_station_path(@station), method: :delete %></li>
+  <% end %>
 </ul>

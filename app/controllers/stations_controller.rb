@@ -1,11 +1,11 @@
 class StationsController < ApplicationController
+  before_action :set_station, only: [:show]
 
   def index
     @stations = Station.all
   end
 
   def show
-    @station = Station.find_by(slug: params[:slug])
     @rides_started_here = 1 #count of trips with starting id == @station.id
     @rides_ended_here = 1
     @destination_station_from_here = 1
@@ -33,6 +33,15 @@ class StationsController < ApplicationController
     else
       render file: 'public/404'
     end
+  end
+
+  private
+  def station_params
+    params.require(:station).permit(:name, :dock_count, :city, :installation_date)
+  end
+
+  def set_station
+    @station = Station.find_by(slug: params[:slug])
   end
 
 end

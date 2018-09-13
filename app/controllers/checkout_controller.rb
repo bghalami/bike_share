@@ -11,7 +11,7 @@ class CheckoutController < ApplicationController
       total = '%.2f' % @cart.cart_total
       num_items = @cart.accessories.count
       session[:cart] = nil
-      flash[:notice] = "Successfully submitted your order totaling $#{total}! You ordered #{@cart.accessories.count} items."
+      flash[:notice] = "Successfully submitted your order totaling $#{total}! You ordered #{pluralize(@cart.accessories.count, "item")}."
       redirect_to dashboard_path
     else
       flash[:notice] = "Something went wrong, try again later."
